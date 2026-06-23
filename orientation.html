@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .orientation-form {
+				border: #000 solid 1px;
+				max-width: 450px;
+				margin: 20px auto;
+				padding: 15px;
+			}
+
+        .error {
+            border: 2px solid #ff0000 !important;
+            background-color: #ffe6e6;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success {
+            border: 2px solid #00aa00;
+            background-color: #e6ffe6;
+        }
+
+    </style>
+</head>
+<body>
+
+<form class="orientation-form" action="https://lpcazure1.laspositascollege.edu/_apps/lpc-orientation/index.asp" method="get" onsubmit="return validateForm()">
+    <label for="id">W#:</label> <input id="id" name="id" required="" type="text" maxlength="9" onblur="validateAndFormatId()" /><br />
+    <div id="id-error" class="error-message">ID is required and must be exactly 9 characters (including w prefix).</div><br />
+    <label for="fn">First Name:</label> <input id="fn" name="fn" required="" type="text" onblur="validateFirstName()" /><br />
+    <div id="fn-error" class="error-message">First name is required and cannot be empty.</div><br />
+    <label for="ln">Last Name:</label> <input id="ln" name="ln" required="" type="text" onblur="validateLastName()" /><br />
+    <div id="ln-error" class="error-message">Last name is required and cannot be empty.</div><br />
+    <input type="submit" value="Start Orientation" />
+</form>
+
+<script>
+function validateFirstName() {
+    const firstNameField = document.getElementById('fn');
+    const errorMessage = document.getElementById('fn-error');
+    const firstName = firstNameField.value.trim();
+
+    if (firstName === '') {
+        // Show error styling and message
+        firstNameField.classList.add('error');
+        firstNameField.classList.remove('success');
+        errorMessage.style.display = 'block';
+        return false;
+    } else {
+        // Show success styling and hide error message
+        firstNameField.classList.remove('error');
+        firstNameField.classList.add('success');
+        errorMessage.style.display = 'none';
+        return true;
+    }
+}
+
+function validateLastName() {
+    const lastNameField = document.getElementById('ln');
+    const errorMessage = document.getElementById('ln-error');
+    const lastName = lastNameField.value.trim();
+
+    if (lastName === '') {
+        // Show error styling and message
+        lastNameField.classList.add('error');
+        lastNameField.classList.remove('success');
+        errorMessage.style.display = 'block';
+        return false;
+    } else {
+        // Show success styling and hide error message
+        lastNameField.classList.remove('error');
+        lastNameField.classList.add('success');
+        errorMessage.style.display = 'none';
+        return true;
+    }
+}
+
+function validateAndFormatId() {
+    const idField = document.getElementById('id');
+    const errorMessage = document.getElementById('id-error');
+    let idValue = idField.value.trim();
+
+    if (idValue === '') {
+        // Show error styling and message for empty field
+        idField.classList.add('error');
+        idField.classList.remove('success');
+        errorMessage.style.display = 'block';
+        return false;
+    } else {
+        // Add 'w' prefix if it doesn't exist
+        if (!idValue.toLowerCase().startsWith('w')) {
+            idValue = 'w' + idValue;
+        }
+        
+        // Check if the length is exactly 9 characters
+        if (idValue.length !== 9) {
+            idField.classList.add('error');
+            idField.classList.remove('success');
+            errorMessage.style.display = 'block';
+            // Update the field value but show error
+            idField.value = idValue;
+            return false;
+        } else {
+            // Update field value and show success
+            idField.value = idValue;
+            idField.classList.remove('error');
+            idField.classList.add('success');
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    }
+}
+
+function validateForm() {
+    const isIdValid = validateAndFormatId();
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
+    
+    if (!isIdValid || !isFirstNameValid || !isLastNameValid) {
+        alert('Please fill in all required fields before submitting.');
+        return false; // Prevent form submission
+    }
+    
+    return true; // Allow form submission
+}
+
+// Add real-time validation as user types
+document.getElementById('fn').addEventListener('input', function() {
+    // Only validate if the field has been touched (has error class)
+    if (this.classList.contains('error')) {
+        validateFirstName();
+    }
+});
+
+document.getElementById('ln').addEventListener('input', function() {
+    // Only validate if the field has been touched (has error class)
+    if (this.classList.contains('error')) {
+        validateLastName();
+    }
+});
+
+document.getElementById('id').addEventListener('input', function() {
+    // Only validate if the field has been touched (has error class)
+    if (this.classList.contains('error')) {
+        validateAndFormatId();
+    }
+});
+</script>
+    
+</body>
+</html>

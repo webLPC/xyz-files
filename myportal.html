@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .button {
+            background-color: orangered;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            box-shadow:0 8px 16px 0 rgba(0,0,0,0.6)
+        }
+
+        .center {
+            display: block;
+            margin: 0 auto;
+            width: fit-content;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .wrapper-image > img {
+	        width: 476px;
+	        height: 375px;
+	        object-fit: cover;
+            margin: 25px auto;
+        }
+
+        .image-window {
+            width: 100%;
+            height: auto;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper-image center">
+        <img src="https://laspositascollege.edu/canvas/files/images/newreg.jpg" alt="Placeholder Image" />
+    </div>
+
+    <div class="wrapper">
+        <img class="image-window" src="https://laspositascollege.edu/canvas/files/images/newreg.jpg" alt="Placeholder Image" />
+        <h1>Welcome to My Portal</h1>
+        <p>This is a sample portal page.</p>
+    </div>
+
+    <a href="#" class="button center">Click me</a>
+    
+</body>
+</html>

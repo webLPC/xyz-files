@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered" id="office-hours-table">
+    <caption>Office hours</caption>
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Day</th>
+        <th scope="col">Start Time</th>
+        <th scope="col">End Time</th>
+        <th scope="col">Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5">Loading office hours...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(async function () {
+  const endpoint = "https://eo5ykun4jladb65.m.pipedream.net";
+  const tableBody = document.querySelector("#office-hours-table tbody");
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function dayOrder(day) {
+    const days = {
+      "monday": 1,
+      "tuesday": 2,
+      "wednesday": 3,
+      "thursday": 4,
+      "friday": 5,
+      "saturday": 6,
+      "sunday": 7
+    };
+    return days[String(day).toLowerCase()] || 99;
+  }
+
+  function timeToMinutes(timeStr) {
+    const match = String(timeStr).trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+    if (!match) return 9999;
+
+    let hour = parseInt(match[1], 10);
+    const minutes = parseInt(match[2], 10);
+    const period = match[3].toUpperCase();
+
+    if (period === "PM" && hour !== 12) hour += 12;
+    if (period === "AM" && hour === 12) hour = 0;
+
+    return hour * 60 + minutes;
+  }
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data) || data.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="5">No office hours found.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    data.sort((a, b) => {
+      const emailCompare = String(a.email || "").localeCompare(String(b.email || ""));
+      if (emailCompare !== 0) return emailCompare;
+
+      const dayCompare = dayOrder(a.day) - dayOrder(b.day);
+      if (dayCompare !== 0) return dayCompare;
+
+      return timeToMinutes(a.startTime) - timeToMinutes(b.startTime);
+    });
+
+    tableBody.innerHTML = "";
+
+    data.forEach(item => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td><a href="mailto:${escapeHtml(item.email)}">${escapeHtml(item.email)}</a></td>
+        <td>${escapeHtml(item.day)}</td>
+        <td>${escapeHtml(item.startTime)}</td>
+        <td>${escapeHtml(item.endTime)}</td>
+        <td>${escapeHtml(item.location)}</td>
+      `;
+
+      tableBody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Error loading office hours:", error);
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="5">Unable to load office hours at this time.</td>
+      </tr>
+    `;
+  }
+})();
+</script>
+</body>
+</html>

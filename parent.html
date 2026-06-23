@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        /* PAGE */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+/* INTRO TEXT */
+.intro {
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  color: #333;
+}
+
+/* GRID LAYOUT */
+.top-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* CARD STYLE */
+.card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 260px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* ICON */
+.icon {
+  font-size: 42px;
+  color: #8B1E2D;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+/* HEADINGS */
+.card h3 {
+  font-size: 20px;
+  color: #8B1E2D;
+  margin: 6px 0 10px;
+  line-height: 1.3;
+}
+
+/* TEXT */
+.card p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+/* LINKS */
+.card a {
+  color: #1a5fd0;
+  text-decoration: underline;
+}
+
+/* LISTS */
+.card ul {
+  margin: 6px 0 10px;
+  padding-left: 18px;
+}
+
+.card li {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+/* SECTION LABELS */
+.card strong {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  color: #8B1E2D;
+}
+
+/* COMING SOON TEXT (NOT A BUTTON) */
+.coming-soon {
+  margin-top: 10px;
+  font-style: italic;
+  color: #8B1E2D;
+  font-size: 14px;
+}
+
+/* REMOVE ANY SPECIAL STYLING FROM LAST CARD */
+.card:last-child {
+  background: #ffffff; /* explicitly no shading */
+  border: 1px solid #e5e5e5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .top-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bottom-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .top-row,
+  .bottom-row {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+  <div class="intro">
+    We honor that raising a child while going to school requires determination and tenacity. Student Parents serve as role models for children and demonstrate the importance of education at any age. LPC has a variety of resources to support our Student Parents to ensure their personal and academic success.
+  </div>
+
+  <!-- TOP ROW -->
+  <div class="top-row">
+    <div class="card">
+      <div class="icon">💼</div>
+      <h3>Financial Aid for Student Parents</h3>
+      <p>Support to make college more affordable<br>Everyone should apply!</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧺</div>
+      <h3>Basic Needs Resources</h3>
+      <p>LPC has Food, Housing, Diapers, Formula, Textbooks, Transportation, Laundry and other supports</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🖥️</div>
+      <h3>Priority Registration</h3>
+      <p>Student Parents may qualify for early registration</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+
+    <div class="card">
+      <div class="icon">🍼</div>
+      <h3>Pregnant Students and Child Care</h3>
+
+      <strong>Pregnancy/Parenting</strong>
+      <ul>
+        <li><a href="#">Title IX</a> protections</li>
+        <li><a href="#">DSPS</a> accommodations for pregnant students</li>
+      </ul>
+
+      <strong>Child Care Needs</strong>
+      <ul>
+        <li>Visit LPC’s <a href="#">Child Development Center</a></li>
+        <li>Need help <a href="#">finding and paying</a> for care?</li>
+        <li><a href="#">Family Support Services</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="icon">👨‍👩‍👧</div>
+      <h3>Family-Friendly Spaces on Campus</h3>
+      <ul>
+        <li><a href="#">Lactation rooms (map)</a></li>
+        <li><a href="#">Single-stall bathrooms (map)</a></li>
+        <li>Bathrooms with changing tables</li>
+        <li><a href="#">Veteran's Center</a></li>
+        <li><a href="#">Child Development Center</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">Cafeteria</a></li>
+        <li><a href="#">Black Cultural Resource Center</a></li>
+        <li><a href="#">Cultural Community Center</a></li>
+        <li><a href="#">CARES/EOPS/CalWorks/NextUp</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="icon">❤️</div>
+      <h3>Community Resources</h3>
+      <p>Find Family Resources, Medical and Mental Health, Housing, Legal, Foster Youth, Immigration</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">👥</div>
+      <h3>Student Parent Club</h3>
+      <p>
+        Connect with other Student Parents, share experiences, and build community on campus.
+      </p>
+      <p class="coming-soon">Coming Soon!</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

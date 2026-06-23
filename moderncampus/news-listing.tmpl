@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/_resources/xsl/news.xsl" title="HTML" extension="php"?>
+
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd"> 
+
+<document xmlns:ouc="http://omniupdate.com/XSL/Variables">
+
+	<headcode></headcode> <!-- before closing head tag -->
+	<bodycode></bodycode> <!-- after opening body tag -->
+	<footcode></footcode> <!-- before closing body tag -->
+	<ouc:info><tcf><!--%echo var="tcfname" --></tcf><tmpl>news-listing.tmpl</tmpl></ouc:info>
+
+	<ouc:properties label="metadata">
+		<title><!--%echo var="title" --></title>
+		<meta name="Description" content="<!--%echo var='description' -->" />
+		<meta name="Keywords" content="<!--%echo var='keywords' -->" />
+	</ouc:properties>
+
+	<ouc:properties label="config">
+		<parameter name="heading" type="text" group="Everyone" prompt="Page Heading" alt="Please enter the page heading."><!--%echo var="title" --></parameter>
+		<parameter name="breadcrumb" type="text" group="Everyone" prompt="Breadcrumb" alt="Please enter the breadcrumb text. This is not used on index pages."><!--%echo var="title" --></parameter>
+
+		<parameter section="Top Banner" name="photo-1" type="filechooser" group="Everyone" prompt="Banner Photo" alt="Please choose your top banner image." dependency="dm-tag"></parameter>
+		<parameter name="photo-alt-1" type="text" group="Everyone" prompt="Banner Photo Alt Text" alt="Please enter an image description your top banner.">Inner Header Image</parameter>
+
+		<parameter section="Turn On/Off Left Navigation" name="leftnav-toggle" type="select" group="Everyone" prompt="Left Navigation On or Off" alt="Please select on or off.">
+			<option value="1" selected="true">On</option>
+			<option value="0" selected="false">Off</option>
+		</parameter>
+	</ouc:properties>
+	
+	<ouc:properties label="news">
+		<parameter name="news-rss-feed" type="filechooser" group="Everyone"  section="News" prompt="News RSS Feed" alt="Please choose the news feed in which you wish your news to come from."></parameter>
+		<parameter name="news-display-count" type="text" group="Everyone" prompt="News Number of Items" alt="Please enter the number of event items to display per page. The default will be 5 if not a real number or left blank.">5</parameter>
+		<parameter name="rss-feed-categories" type="text" group="Everyone" prompt="Categories" alt="Please enter the categories for the RSS feed in a comma separated format: category1, category2 "></parameter>
+	</ouc:properties>
+
+</document>

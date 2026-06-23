@@ -1,0 +1,25 @@
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Environment/secrets
+.env
+.env.*
+config.local.php
+secrets.php
+
+# Dependencies/build artifacts
+node_modules/
+vendor/
+
+# Backups
+*.bak
+*.backup
+*.old
+.git-broken-backup/
