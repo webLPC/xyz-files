@@ -56,13 +56,12 @@
 		<parameter name="photo-alt-1" type="text" group="Everyone" prompt="Banner Photo Alt Text" alt="Please enter an image description your top banner."></parameter>
 		<parameter name="banner-heading" type="text" group="Everyone" prompt="Banner Heading" alt="Page title by default."></parameter> -->
 		
-<!-- 		<parameter section="Directory Listing" name="has-listing" group="admins" type="select" prompt="Directory Listing Toggle" alt="Turn the department directory on or off.">
-			<option value="0" selected="true">No</option>
-		</parameter> -->
+    	<parameter section="Listing Script" name="has-listing" group="admins" type="select" prompt="Listing Script Toggle" alt="Turn the listing on or off.">
+            <option value="1" selected="true">Yes</option>
+			<option value="0" selected="false">No</option>
+		</parameter>
 		
-<!-- 		<parameter name="dept" type="text" group="admins" prompt="Department Filter" alt=""></parameter> -->
-		
-<!-- 		<parameter name="listing-src" type="text" group="admins" prompt="Department Listing Source" alt=""></parameter> -->
+        <parameter name="listing-src" type="text" group="admins" prompt="Path to Listing Script" alt=""></parameter>
 		
 		<parameter section="Turn On/Off Right Sidebar" name="right-sidebar-toggle" type="checkbox" group="Admins" prompt="Right Sidebar Elements" alt="Check the appropriate elements to enable/disable in the right sidebar. When no elements are enabled, the right sidebar will be turned off.">
 			<option value="section-content" selected="false">Section Content</option>

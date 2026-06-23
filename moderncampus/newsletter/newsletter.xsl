@@ -251,7 +251,7 @@
                 <div class="col-12 col-lg-9 lpc-newsletter-listing">
                     <xsl:if test="ou:pcf-param('has-listing') = '1'">
                         <div>
-                            <xsl:call-template name="directory-listing-feed"/>
+                            <xsl:call-template name="newsletter-listing-feed"/>
                         </div>
                     </xsl:if>
                     <xsl:apply-templates select="ouc:div[@label='maincontent']" />
@@ -262,13 +262,38 @@
     </xsl:template>
     
     <xsl:template name="newsletter-listing-feed">
-        <xsl:processing-instruction name="php">
-            $tag = "<xsl:value-of select="ou:pcf-param('dept')" />";	
-            ?</xsl:processing-instruction>
+
+        <xsl:variable name="news-count" select="if (string(number(ou:pcf-param('news-display-count'))) eq 'NaN') then 5 else normalize-space(ou:pcf-param('news-display-count'))" />
+        
+        <xsl:variable name="news-config">
+            <categories>{ou:pcf-param('rss-feed-categories')}</categories>
+            <count>{$news-count}</count>
+            <feed>{ou:pcf-param('news-rss-feed')}</feed>
+        </xsl:variable>
+
+        <xsl:call-template name="display-parsing">
+            <xsl:with-param name="contents" select="$news-config" />
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template name="display-parsing" expand-text="yes">
+        
+        <xsl:param name="contents" />
+
         <xsl:variable name="listing-src">
             <xsl:value-of select="ou:pcf-param('listing-src')" />
         </xsl:variable>
+        
+        <!-- parsing -->
+        <xsl:processing-instruction name="php">
+            $feed = "{$contents/feed}"; 
+            $amount_per_page = {$contents/count};
+            $categories = "{$contents/categories}";
+            $counter = 1;
+            ?</xsl:processing-instruction>
         <xsl:copy-of select="ou:ssi($listing-src)" />
+        <!-- <xsl:copy-of select="ou:ssi($ou:news-listing-script)" /> -->
+        <!-- / parsing -->
     </xsl:template>
     
     <xsl:template name="main-section">
@@ -533,30 +558,43 @@
             </xsl:for-each>
             
         </div>
-        
-        <!-- 		<div class="open-hours-table">
-             <p>Office Hours</p>
-             <xsl:for-each select="tbody/tr">
-             <div>
-             <div>
-             <xsl:value-of select="normalize-space(td[1])" />
-             </div>
-             <div>
-             <xsl:value-of select="normalize-space(td[2])" />
-             </div>
-             </div>
-             </xsl:for-each>
-             </div> -->
+
      </xsl:template>
     
     <xsl:template name="directory-listing">
-        <xsl:processing-instruction name="php">
-            $tag = "<xsl:value-of select="ou:pcf-param('dept')" />";	
-            ?</xsl:processing-instruction>
-        <xsl:variable name="listing-src">
+        
+        
+        <xsl:variable name="listing-srcipt">
             <xsl:value-of select="ou:pcf-param('listing-src')" />
         </xsl:variable>
-        <xsl:copy-of select="ou:ssi($listing-src)" />
+        
+        <xsl:variable name="news-count" select="if (string(number(ou:pcf-param('news-display-count'))) eq 'NaN') then 5 else normalize-space(ou:pcf-param('news-display-count'))" />
+
+        <xsl:variable name="news-config">
+            <categories>{ou:pcf-param('rss-feed-categories')}</categories>
+            <count>{$news-count}</count>
+            <feed>{ou:pcf-param('news-rss-feed')}</feed>
+        </xsl:variable>
+
+        <xsl:call-template name="display-parsing">
+            <xsl:with-param name="contents" select="$news-config" />
+        </xsl:call-template>
+
+    </xsl:template>
+    
+    <xsl:template name="display-parsing" expand-text="yes">
+        <xsl:param name="contents" />
+        
+        <!-- parsing -->
+        <xsl:processing-instruction name="php">
+            $feed = "{$contents/feed}"; 
+            $amount_per_page = {$contents/count};
+            $categories = "{$contents/categories}";
+            $counter = 1;
+            ?</xsl:processing-instruction>
+        <xsl:copy-of select="ou:ssi($listing-script)" />
+        <!-- / parsing -->
+
     </xsl:template>
     
     <!-- Academic Calendar -->
