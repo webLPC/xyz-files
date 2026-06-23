@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pcf-stylesheet path="/moderncampus/newsletter/newsletter.xsl" title="HTML" extension="php"?>
+
+<!DOCTYPE document SYSTEM "http://commons.omniupdate.com/dtd/standard.dtd"> 
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/_resources/php/redirect/azure-www.php"); ?>
+<document xmlns:ouc="http://omniupdate.com/XSL/Variables">
+	
+	<headcode>
+
+	</headcode> <!-- before closing head tag -->
+	<bodycode></bodycode> <!-- after opening body tag -->
+	<footcode>
+		
+	</footcode> <!-- before closing body tag -->
+	<ouc:info><tcf>section2024.tcf</tcf><tmpl>profile.tmpl</tmpl></ouc:info>
+	
+	<ouc:properties label="metadata">
+		<title><!--%echo var="title" --></title>
+		<meta name="Description" content="<!--%echo var='description' -->" />
+		<meta name="Keywords" content="<!--%echo var='keywords' -->" />
+	</ouc:properties>
+	
+
+	<ouc:properties label="config">
+		<parameter name="page-lang" type="select" group="lang-select" prompt="Page Language" alt="Please select the language that the webpage is written in.">
+			<option value="en" selected="true">English</option>
+			<option value="es" selected="false">Spanish</option>
+			<option value="zh" selected="false">Chinese</option>
+		</parameter>
+
+		<parameter name="breadcrumb" type="text" group="Everyone" prompt="Breadcrumb" alt="Not displayed for index pages. Page title by default."></parameter>
+		
+		<parameter section="Page Layout" name="layout-section-toggle" group="Admins" type="select" prompt="Page layout toggle" alt="Please select the webpage layout.">
+			<option value="newsletter" selected="true">Newsletter</option>
+		</parameter>
+		
+		<parameter section="Top Bar Area" name="has-top-bar" group="Admins" type="select" prompt="Top Bar Toggle" alt="Turn the top top red bar on or off.">
+			<option value="0" selected="true">No</option>
+		</parameter>
+		
+		<parameter section="Top Banner" name="has-top-banner" group="Admins" type="select" prompt="Top Banner Toggle" alt="Turn the top banner on or off.">
+			<option value="0" selected="true">No</option>
+		</parameter>
+		
+<!-- 		<parameter section="Top Banner Height" name="top-banner-height" group="Everyone" type="text" prompt="Top Banner Height" alt="Adjust the height of the top banner.">300</parameter> -->
+		
+<!-- 		<parameter section="Top Banner Text" name="top-banner-text" group="Everyone" type="text" prompt="Top Banner Text" alt="Text to be displayed over top banner."></parameter> -->
+		
+		<parameter section="Top Image" name="top-img" type="filechooser" group="Everyone" prompt="Top Image" alt="Please choose your top banner image." dependency="dm-tag"></parameter>
+		<parameter name="top-img-alt" type="text" group="Everyone" prompt="Top Image Alt Text" alt="Please enter an image description your top banner."></parameter>
+		
+<!-- 		<parameter section="Banner Image" name="photo-1" type="filechooser" group="Everyone" prompt="Banner Photo" alt="Please choose your top banner image." dependency="dm-tag"></parameter>
+		<parameter name="photo-alt-1" type="text" group="Everyone" prompt="Banner Photo Alt Text" alt="Please enter an image description your top banner."></parameter>
+		<parameter name="banner-heading" type="text" group="Everyone" prompt="Banner Heading" alt="Page title by default."></parameter> -->
+		
+<!-- 		<parameter section="Directory Listing" name="has-listing" group="admins" type="select" prompt="Directory Listing Toggle" alt="Turn the department directory on or off.">
+			<option value="0" selected="true">No</option>
+		</parameter> -->
+		
+<!-- 		<parameter name="dept" type="text" group="admins" prompt="Department Filter" alt=""></parameter> -->
+		
+<!-- 		<parameter name="listing-src" type="text" group="admins" prompt="Department Listing Source" alt=""></parameter> -->
+		
+		<parameter section="Turn On/Off Right Sidebar" name="right-sidebar-toggle" type="checkbox" group="Admins" prompt="Right Sidebar Elements" alt="Check the appropriate elements to enable/disable in the right sidebar. When no elements are enabled, the right sidebar will be turned off.">
+			<option value="section-content" selected="false">Section Content</option>
+			<option value="editable-region" selected="false">Editable Region</option>
+		</parameter>
+
+		<parameter section="Additional Region Configuration" name="additional-editable-regions" type="select" group="Admins" prompt="Additonal Regions" alt="Please choose the number of additional editable regions. These will display below the main editable region.">
+			<option value="0" selected="true">0</option>
+		</parameter>
+	</ouc:properties>
+	
+	<ouc:properties label="galleries">
+		<parameter section="OU Gallery" name="gallery-type" group="Everyone" type="select" prompt="Gallery Type" alt="Choose the display style for all galleries on this page.">
+			<option value="pretty-photo" selected="true">Pop-up Slideshow</option>
+			<option value="flex-slider" selected="false">In-Page Slider</option>
+		</parameter>
+	</ouc:properties>
+	
+	
+
+	
+	<ouc:div label="maincontent" group="Everyone" button-text="Main Content"><ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="maincontent"/><h1>Enter Page Content Here.</h1></ouc:div>
+	
+	<ouc:div label="sidebar" group="Everyone" button-text="Sidebar Content" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+	</ouc:div>
+	
+	<ouc:div label="rightsidebar" group="Everyone" button-text="Right Sidebar Section" break="break"><ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/></ouc:div>
+	
+	<ouc:div label="rightsidebar-top" group="Everyone" button-text="Right Top Section" break="break"><ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/></ouc:div>
+	
+	<ouc:div label="top-bar-content" group="Everyone" button-text="Top Bar Content" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+		<p>Top Bar Content</p>
+	</ouc:div>
+
+	<ouc:div label="additional-1" group="Everyone" button-text="Additional Region 1" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+		<p>Additional Region 1</p>
+	</ouc:div>
+
+	<ouc:div label="additional-2" group="Everyone" button-text="Additional Region 2" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+		<p>Additional Region 2</p>
+	</ouc:div>
+
+	<ouc:div label="additional-3" group="Everyone" button-text="Additional Region 3" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+		<p>Additional Region 3</p>
+	</ouc:div>
+
+	<ouc:div label="additional-4" group="Everyone" button-text="Additional Region 4" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+		<p>Additional Region 4</p>
+	</ouc:div>
+
+	<ouc:div label="additional-5" group="Everyone" button-text="Additional Region 5" break="break">
+		<ouc:editor csspath="/_resources/ou/editor/wysiwyg.css" cssmenu="/_resources/ou/editor/styles.txt" wysiwyg-class="additional-content"/>
+		<p>Additional Region 5</p>
+	</ouc:div>
+	
+</document>

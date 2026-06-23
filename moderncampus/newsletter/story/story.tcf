@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tcf>
+	<title>LPC Newsletter - New Article</title>
+	
+	<variable-list>
+		<!-- general page setup -->
+		<include>_commonvars.inc</include>
+		<include>_mrss.inc</include>
+		<!-- A safer way to create a file, forces PCF file extension -->
+		<variable name="pcf-filename" prompt="Filename" alt="Enter a filename using only lowercase letters, underscores, or dashes">untitled</variable>
+		<variable name="tcfname" type="text" display="none">newsletter.tcf</variable>
+	</variable-list>
+	
+	<template-list>
+		<template 
+			prompt-prefix="Interior Page"
+			filename="{pcf-filename}"
+			display-filename="no"
+			extension="pcf"
+			preferred-redirect="yes"
+			tags="{tags}"
+			rss-feed="*inherit*"
+			rss-author="{rss-author}"
+			rss-title="{title}"
+			rss-link="[auto]"
+			rss-tags="{tags}"
+			rss-description="{rss-description}"
+			rss-media="{mtitle}^^{murl}^^{mdesc}^^{mthumbnail}^^{mkeywords}"
+			>newsletter.tmpl</template>
+	</template-list>
+</tcf>
