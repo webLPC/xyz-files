@@ -4,6 +4,10 @@
  * The WNL class uses PHP's built in simplexml_load_file function to open the file.
  * It uses xpath to get the collection of items you want.
  */
+
+// Vendor-supplied Modern Campus/OmniUpdate RSS utility.
+// Do not modify directly. Make project-specific changes in listing.php.
+
 class WNL extends XmlCollection {
     var $wnl;
     var $dataType = "xml";

@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/_resources/php/wnl/WNL.php');
 
 if (!isset($feed)) {
-	$feed = isset($_GET["feed"]) && $_GET["feed"] !== '' ? $_GET["feed"] : 'https://districtazure.clpccd.org/_resources/php/wnl/rss-sample.xml';
+	$feed = isset($feed) && $feed !== '' ? $feed : '/newsletter/rss.xml';
 }
 if (!isset($amount_per_page)) {
 	$amount_per_page = isset($_GET["amount_per_page"]) && $_GET["amount_per_page"] !== '' ? $_GET["amount_per_page"] : 5;
