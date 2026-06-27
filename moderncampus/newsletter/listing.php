@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/_resources/php/wnl/WNL.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/_resources/php/wnl/wnl2026.php');
 
 if (!isset($feed)) {
 	$feed = isset($feed) && $feed !== '' ? $feed : '/newsletter/rss.xml';
@@ -22,6 +22,29 @@ function displayNews($x){
 	global $item_count;
 	
 	$res = "";
+	$categories = array();
+
+	if (isset($y->category)) {
+		$category_values = $y->category;
+		if (is_object($category_values)) {
+			$category_values = (array) $category_values;
+		}
+		if (is_array($category_values)) {
+			foreach ($category_values as $category_value) {
+				$category_value = trim((string) $category_value);
+				if ($category_value !== '') {
+					$categories[] = $category_value;
+				}
+			}
+		} else {
+			$category_value = trim((string) $category_values);
+			if ($category_value !== '') {
+				$categories[] = $category_value;
+			}
+		}
+	}
+
+	
 
 	if ($counter < $item_count || $counter == 0 ){	
 		$res .= '<div class="campus-content bottom-border">';		
@@ -35,7 +58,12 @@ function displayNews($x){
 		}
 		$res .= '<a href="' . $y->link . '"><h4>' . $y->title . '</h4></a>';
 		$res .= '<p>' . date("F j, Y", strtotime($y->pubDate)) . ' | ' . $y->author . '</p>';
+		if (!empty($categories)) {
+			$res .= '<p><strong>Categories:</strong> ' . implode(', ', array_map('htmlspecialchars', $categories)) . '</p>';
+		}
 		$res .= '<p>' . $y->description . '</p>';
+
+
 	$res .= '</div>';
   	echo($res);
 }
